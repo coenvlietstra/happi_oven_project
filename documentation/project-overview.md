@@ -44,11 +44,11 @@ For the complete list of API endpoints, refer to the [API Endpoints Markdown doc
 
 ## Database
 
-The database design includes tables for users, dishes, user favorites, orders, order items, reviews, and contact requests. Refer to the [Database Schema Markdown document](./database/database%20-%20overview.md) for detailed schema information.
+The database design includes tables for users, dishes, user favorites, orders, order items, reviews, and contact requests. Refer to the [Database Schema Markdown document](./database/database-overview.md) for detailed schema information.
 
 ## Node.js Server
 
-The Node.js server serves as the backend infrastructure for the Food Ordering Application. It handles API requests, authentication, and database interactions. For a detailed overview of the server setup, API endpoints, and development process, refer to the [Server Markdown document](./server/server%20-%20overview.md).
+The Node.js server serves as the backend infrastructure for the Food Ordering Application. It handles API requests, authentication, and database interactions. For a detailed overview of the server setup, API endpoints, and development process, refer to the [Server Markdown document](./server/server-overview.md ).
 
 ## Technologies Used
 
