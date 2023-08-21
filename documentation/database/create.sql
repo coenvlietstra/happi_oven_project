@@ -4,6 +4,7 @@ CREATE TABLE Users (
     email TEXT,
     password_hash TEXT,
     phone_number TEXT,
+    rights_level TEXT, -- Add the new column for rights level
     created_at TIMESTAMP,
     last_login TIMESTAMP
 );

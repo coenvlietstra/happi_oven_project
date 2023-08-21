@@ -7,9 +7,6 @@ const { JWT_SECRET } = process.env;
  * @returns {string} - The generated JWT token.
  */
 function generateToken(user) {
-  // Log the user object for reference (can be removed in production)
-  console.log(user);
-
   // Sign the user_id from the user object with the JWT_SECRET and set expiration to 1 hour
   const token = jwt.sign({ userId: user.user_id }, JWT_SECRET, { expiresIn: '1h' });
 
