@@ -1,7 +1,7 @@
 // Import necessary utility functions and constants
 const { checkUserExists } = require('../utils/userUtils');
 const { hashUserPassword } = require('../utils/passwordUtils');
-const { insertNewUser } = require('../utils/insertUtils');
+const { insertNewUser } = require('../utils/userUtils');
 const { ResponseMessages, ResponseStatus } = require('../utils/responseConstants');
 
 // Define the registerUser controller function

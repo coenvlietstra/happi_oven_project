@@ -1,9 +1,10 @@
 // Import required modules
 const express = require('express');
-const app = express();
 const { sql } = require('./database/connection');
 const { configureRoutes } = require('./routes/routes');
 const { getPgVersion } = require('./utils/test_deb');
+
+const app = express();
 
 // Define the port number to listen on
 const port = process.env.PORT;
