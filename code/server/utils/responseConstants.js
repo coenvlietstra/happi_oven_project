@@ -4,7 +4,8 @@ const ResponseMessages = {
   REGISTRATION_SUCCESS: 'User registered successfully',
   INTERNAL_SERVER_ERROR: 'An internal server error occurred',
   INVALID_CREDENTIALS: 'Incorrect username & or password',
-  USER_NOT_FOUND: 'User does not exist'
+  USER_NOT_FOUND: 'User does not exist',
+  CREATION_SUCCESS: 'Menu created succesfully',
 };
 
 // Define custom response status codes for different scenarios

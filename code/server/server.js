@@ -3,7 +3,7 @@ const express = require('express');
 const { sql } = require('./database/connection');
 const { configureRoutes } = require('./routes/routes');
 const { getPgVersion } = require('./utils/test_deb');
-const { calculateWeekAndDay } = require('./utils/dateCalculation');
+const { calculateWeekAndDay } = require('./helpers/dateHelpers');
 
 
 const app = express();
@@ -37,7 +37,7 @@ const server = app.listen(port, async () => {
   // Get and display the PostgreSQL version
   getPgVersion(sql);
 
-  console.log(calculateWeekAndDay('2024-09-28'));
+  console.log(calculateWeekAndDay('2023-08-28'));
 
   console.log(`Server is running on port ${port}`);
 });

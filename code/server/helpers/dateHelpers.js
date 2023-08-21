@@ -1,7 +1,7 @@
 /**
  * Calculate the week number and day of the week for a given date.
  * @param {string} dateString - The input date string in 'YYYY-MM-DD' format.
- * @returns {string} - A formatted string with the week number and day of the week.
+ * @returns {Object} - An object containing the calculated week number and day of the week.
  */
 function calculateWeekAndDay(dateString) {
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -15,9 +15,12 @@ function calculateWeekAndDay(dateString) {
 
     const dayOfWeek = daysOfWeek[currentDate.getDay()];
 
-    return `Week ${weekNumber} ${dayOfWeek}`;
+    return {
+        weekNumber,
+        dayOfWeek
+    };
 }
 
 module.exports = {
     calculateWeekAndDay,
-};
+}
