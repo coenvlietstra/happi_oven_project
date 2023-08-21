@@ -54,6 +54,7 @@ const updateLastLogin = async (userId, sql) => {
  */
 const getUserByUsername = async (username, sql) => {
   const [user] = await sql`SELECT * FROM users WHERE username = ${username}`;
+  
   return user || null;
 };
 

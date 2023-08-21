@@ -3,7 +3,7 @@ const { generateToken } = require('../utils/jwtUtils');
 const { updateLastLogin, getUserByUsername } = require('../utils/userUtils');
 const { comparePassword } = require('../utils/passwordUtils');
 const { ResponseStatus, ResponseMessages } = require('../utils/responseConstants');
-const { loginReturnModel } = require('../models/userModels');
+const { LoginReturnModel, User } = require('../models/userModels');
 
 /**
  * Log in a user by checking provided credentials and generating a JWT token upon success.
@@ -17,12 +17,15 @@ const loginUser = async (req, res) => {
 
   try {
     // Retrieve user information from the database based on the provided username
-    const user = await getUserByUsername(username, sql);
+    const data = await getUserByUsername(username, sql);
 
     // If no user found, return a 401 Unauthorized response
-    if (!user) {
+    if (!data) {
       return res.status(ResponseStatus.UNAUTHORIZED).json({ message: ResponseMessages.USER_NOT_FOUND });
     }
+
+    const user = User.fromDatabaseRow(data);
+    
 
     // Compare the provided password with the hashed password from the database
     const passwordMatch = await comparePassword(password, user.password_hash);
@@ -39,10 +42,10 @@ const loginUser = async (req, res) => {
     const token = generateToken(user);
 
     // Populate response model
-    const loginResponse = loginReturnModel(token, user.username, user.email, user.phone);
+    const loginResponse = new LoginReturnModel(token, user.username, user.email, user.phone_number);
 
     // Return a 200 OK response with the generated JWT token
-    return res.status(ResponseStatus.SUCCESS).json(loginResponse);
+    return res.status(ResponseStatus.SUCCESS).json({loginResponse});
   } catch (error) {
     // Handle errors by logging and sending a 500 Internal Server Error response
     console.error('Error logging in user:', error);
