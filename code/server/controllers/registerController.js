@@ -4,7 +4,12 @@ const { hashUserPassword } = require('../utils/passwordUtils');
 const { insertNewUser } = require('../utils/userUtils');
 const { ResponseMessages, ResponseStatus } = require('../utils/responseConstants');
 
-// Define the registerUser controller function
+/**
+ * Register a new user by processing provided user information and performing necessary checks.
+ * @param {Object} req - The request object containing user information in the request body.
+ * @param {Object} res - The response object to send appropriate responses to the client.
+ * @returns {Promise<Object>} - A JSON response indicating success or failure of user registration.
+ */
 const registerUser = async ({ body, sql }, res) => {
   // Destructure the relevant properties from the request body
   const { username, email, password, phone_number } = body;

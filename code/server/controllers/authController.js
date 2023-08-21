@@ -3,6 +3,7 @@ const { generateToken } = require('../utils/jwtUtils');
 const { updateLastLogin, getUserByUsername } = require('../utils/userUtils');
 const { comparePassword } = require('../utils/passwordUtils');
 const { ResponseStatus, ResponseMessages } = require('../utils/responseConstants');
+const { loginReturnModel } = require('../models/userModels');
 
 /**
  * Log in a user by checking provided credentials and generating a JWT token upon success.
@@ -37,8 +38,11 @@ const loginUser = async (req, res) => {
     // Generate a JWT token for the user
     const token = generateToken(user);
 
+    // Populate response model
+    const loginResponse = loginReturnModel(token, user.username, user.email, user.phone);
+
     // Return a 200 OK response with the generated JWT token
-    return res.status(ResponseStatus.SUCCESS).json({ token });
+    return res.status(ResponseStatus.SUCCESS).json(loginResponse);
   } catch (error) {
     // Handle errors by logging and sending a 500 Internal Server Error response
     console.error('Error logging in user:', error);
