@@ -64,6 +64,7 @@ const fetchDishesByYearWeekAndDay = async (sql, year, weekNumber, dayOfWeek) => 
       SELECT * FROM Dishes
       WHERE year = ${year} AND week_number >= ${weekNumber}
         AND (week_number > ${weekNumber} OR day_of_week >= ${dayOfWeek})
+      ORDER BY week_number,  dish_id
     `;
 
     return dishes; // Return the fetched dishes

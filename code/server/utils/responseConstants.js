@@ -7,7 +7,9 @@ const ResponseMessages = {
   USER_NOT_FOUND: 'User does not exist',
   CREATION_SUCCESS: 'Menu created succesfully',
   UPDATE_ITEM_SUCCESS: 'Menu item updated successfully',
-  CONFLICT_MENU_ITEM: 'Menu item already exists'
+  CONFLICT_MENU_ITEM: 'Menu item already exists',
+  UNAUTHORIZED: 'User is not authorized',
+  TOKEN_EXPIRED: 'User token has expired'
 };
 
 // Define custom response status codes for different scenarios
