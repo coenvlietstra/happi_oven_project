@@ -22,7 +22,7 @@ const insertMenuItem = async (year, weekNumber, dayOfWeek, dish, sql) => {
 };
 
 /**
- * Fetch dishes from the database based on the provided year, week number, and day of the week.
+ * Fetch dish from the database based on the provided year, week number, and day of the week.
  * @param {Object} sql - The SQL template tag for querying the database.
  * @param {number} year - The year to filter dishes.
  * @param {number} weekNumber - The week number to filter dishes.
@@ -33,14 +33,14 @@ const insertMenuItem = async (year, weekNumber, dayOfWeek, dish, sql) => {
 const fetchDishByYearWeekAndDay = async (sql, year, weekNumber, dayOfWeek) => {
   try {
     // Fetch dishes from the Dishes table based on year, week number, and day of the week
-    const dishes = await sql`
+    const dish = await sql`
       SELECT * FROM Dishes
       WHERE year = ${year}
         AND week_number = ${weekNumber}
         AND day_of_week = ${dayOfWeek}
     `;
 
-    return dishes; // Return the fetched dishes
+    return dish; // Return the fetched dishes
   } catch (error) {
     // If an error occurs during fetching, log the error and throw it
     console.error('Error fetching dishes:', error);
@@ -48,9 +48,18 @@ const fetchDishByYearWeekAndDay = async (sql, year, weekNumber, dayOfWeek) => {
   }
 };
 
-const fetchDishesByYearWeekAndDay = async (sql,year, weekNumber, dayOfWeek) => {
+/**
+ * Fetch dishes from the database based on the provided year, week number, and day of the week.
+ * @param {Object} sql - The SQL template tag for querying the database.
+ * @param {number} year - The year to filter dishes.
+ * @param {number} weekNumber - The week number to filter dishes.
+ * @param {string} dayOfWeek - The day of the week to filter dishes.
+ * @returns {Promise<Array>} - A promise that resolves to an array of fetched dishes.
+ * @throws {Error} - Throws an error if the fetching process fails.
+ */
+const fetchDishesByYearWeekAndDay = async (sql, year, weekNumber, dayOfWeek) => {
   try {
-    // Fetch dishes from the Dishes table based on week number and day of the week
+    // Fetch dishes from the Dishes table based on year, week number, and day of the week
     const dishes = await sql`
       SELECT * FROM Dishes
       WHERE year = ${year} AND week_number >= ${weekNumber}
@@ -64,7 +73,6 @@ const fetchDishesByYearWeekAndDay = async (sql,year, weekNumber, dayOfWeek) => {
     throw error;
   }
 };
-
 
 /**
  * Fetch a menu item by its dish_id.
