@@ -52,6 +52,7 @@ class User {
      * @param {string} username - The username of the user.
      * @param {string} email - The email of the user.
      * @param {string} phone - The phone number of the user.
+     * @param {string} rights - The rights level of the user.
      */
     constructor(token, username, email, phone, rights) {
       this.token = token;
@@ -60,6 +61,22 @@ class User {
         email,
         phone,
         rights
+      };
+    }
+  
+    /**
+     * Convert the LoginReturnModel instance to the desired response format.
+     * @returns {Object} - The response object with token and user information.
+     */
+    toResponseJSON() {
+      return {
+        token: this.token,
+        user: {
+          username: this.user.username,
+          email: this.user.email,
+          phone: this.user.phone,
+          rights: this.user.rights
+        }
       };
     }
   }

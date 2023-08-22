@@ -5,6 +5,7 @@ const { updateLastLogin, getUserByUsername } = require('../utils/userUtils');
 const { comparePassword } = require('../utils/passwordUtils');
 const { ResponseStatus, ResponseMessages } = require('../utils/responseConstants');
 const { LoginReturnModel, User } = require('../models/userModels');
+const { json } = require('express');
 
 /**
  * Log in a user by checking provided credentials and generating a JWT token upon success.
@@ -45,8 +46,10 @@ const loginUser = async (req, res) => {
     // Create a login response model
     const loginResponse = new LoginReturnModel(token, user.username, user.email, user.phone_number, user.rights_level);
 
+    const jsonResponse = loginResponse.toResponseJSON();
+
     // Return a 200 OK response with the generated JWT token and login response model
-    return res.status(ResponseStatus.SUCCESS).json({ loginResponse });
+    return res.status(ResponseStatus.SUCCESS).json(jsonResponse);
   } catch (error) {
     // Handle errors by logging and sending a 500 Internal Server Error response
     console.error('Error logging in user:', error);
