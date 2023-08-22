@@ -45,8 +45,56 @@ const fetchDishesByWeekAndDay = async (sql, weekNumber, dayOfWeek) => {
   }
 };
 
+/**
+ * Fetch a menu item by its dish_id.
+ * @param {number} id - The dish_id of the menu item to fetch.
+ * @param {Object} sql - The SQL template tag for querying the database.
+ * @returns {Promise<Object>} - A promise that resolves to the fetched menu item.
+ * @throws {Error} - Throws an error if the fetching process fails.
+ */
+const fetchMenuItemById = async (id, sql) => {
+  try {
+    const menuItem = await sql`
+      SELECT * FROM Dishes
+      WHERE dish_id = ${id}
+    `;
+    return menuItem;
+  } catch (error) {
+    console.error('Error fetching menu item:', error);
+    throw error;
+  }
+};
+
+/**
+ * Update a menu item by its dish_id.
+ * @param {number} id - The dish_id of the menu item to update.
+ * @param {string} dish_name - The updated dish name.
+ * @param {string} description - The updated description.
+ * @param {number} price - The updated price.
+ * @param {string} image_url - The updated image URL.
+ * @param {Object} sql - The SQL template tag for querying the database.
+ * @throws {Error} - Throws an error if the update process fails.
+ */
+const updateMenuItemById = async (id, dish_name, description, price, image_url, sql) => {
+  try {
+    await sql`
+      UPDATE Dishes
+      SET dish_name = ${dish_name},
+          description = ${description},
+          price = ${price},
+          image_url = ${image_url}
+      WHERE dish_id = ${id}
+    `;
+  } catch (error) {
+    console.error('Error updating menu item:', error);
+    throw error;
+  }
+};
+
 // Export the utility functions for external use
 module.exports = {
   insertMenuItem,
-  fetchDishesByWeekAndDay
+  fetchDishesByWeekAndDay,
+  fetchMenuItemById,
+  updateMenuItemById,
 };

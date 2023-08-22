@@ -37,8 +37,6 @@ const server = app.listen(port, async () => {
   // Get and display the PostgreSQL version
   getPgVersion(sql);
 
-  console.log(calculateWeekAndDay('2023-08-28'));
-
   console.log(`Server is running on port ${port}`);
 });
 
