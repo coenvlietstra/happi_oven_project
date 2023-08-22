@@ -6,7 +6,8 @@ const ResponseMessages = {
   INVALID_CREDENTIALS: 'Incorrect username & or password',
   USER_NOT_FOUND: 'User does not exist',
   CREATION_SUCCESS: 'Menu created succesfully',
-  UPDATE_ITEM_SUCCESS: 'Menu item updated successfully'
+  UPDATE_ITEM_SUCCESS: 'Menu item updated successfully',
+  CONFLICT_MENU_ITEM: 'Menu item already exists'
 };
 
 // Define custom response status codes for different scenarios

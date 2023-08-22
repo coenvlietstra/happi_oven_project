@@ -11,12 +11,14 @@ CREATE TABLE Users (
 
 CREATE TABLE Dishes (
     dish_id SERIAL PRIMARY KEY,
+    year INTEGER,
     week_number INTEGER,
     day_of_week TEXT,
     dish_name TEXT,
     description TEXT,
     price NUMERIC,
-    image_url TEXT
+    image_url TEXT,
+    CONSTRAINT unique_dish_combination UNIQUE (year, week_number, day_of_week)
 );
 
 CREATE TABLE UserFavorites (

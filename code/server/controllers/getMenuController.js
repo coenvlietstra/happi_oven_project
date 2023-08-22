@@ -1,7 +1,7 @@
 // Import necessary modules and utility functions
 const { sql } = require('../database/connection'); // Database connection utility
-const { calculateWeekAndDay } = require('../helpers/dateHelpers'); // Date calculation utility
-const { fetchDishesByWeekAndDay } = require('../utils/menuUtils'); // Custom utility function for fetching dishes
+const { calculateYearWeekAndDay } = require('../helpers/dateHelpers'); // Date calculation utility
+const { fetchDishesByYearWeekAndDay } = require('../utils/menuUtils'); // Custom utility function for fetching dishes
 const { ResponseMessages, ResponseStatus } = require('../utils/responseConstants'); // Custom response constants for consistent messaging
 
 /**
@@ -11,14 +11,14 @@ const { ResponseMessages, ResponseStatus } = require('../utils/responseConstants
  * @returns {Promise<Object>} - A JSON response with dishes or an error message.
  */
 const getDishesFromStartDate = async (req, res) => {
-  const { startDate } = req.body; // Get the starting date from the request body
+  const { startingDate, year } = req.body; // Get the starting date and year from the request body
 
   try {
     // Calculate the week number and day of the week for the provided start date
-    const { weekNumber, dayOfWeek } = calculateWeekAndDay(startDate);
+    const {year, weekNumber, dayOfWeek } = calculateYearWeekAndDay(startingDate);
 
-    // Fetch dishes using the new utility function
-    const dishes = await fetchDishesByWeekAndDay(sql, weekNumber, dayOfWeek);
+    // Fetch dishes using the new utility function with year, week number, and day of the week
+    const dishes = await fetchDishesByYearWeekAndDay(sql, year, weekNumber, dayOfWeek);
 
     // Return a 200 OK response with fetched dishes
     return res.status(ResponseStatus.SUCCESS).json(dishes);

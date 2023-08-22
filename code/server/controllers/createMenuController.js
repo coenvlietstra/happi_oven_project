@@ -1,7 +1,7 @@
 // Import necessary modules and utility functions
 const { sql } = require('../database/connection');
-const { insertMenuItem } = require('../utils/menuUtils');
-const { calculateWeekAndDay } = require('../helpers/dateHelpers');
+const { insertMenuItem, fetchDishByYearWeekAndDay } = require('../utils/menuUtils'); // Import menu utility functions
+const { calculateYearWeekAndDay } = require('../helpers/dateHelpers'); // Updated date utility function
 const { ResponseMessages, ResponseStatus } = require('../utils/responseConstants');
 
 // Number of days to loop through when creating menu items
@@ -27,14 +27,20 @@ const createMenuItem = async (req, res) => {
       const currentDay = new Date(startDate);
       currentDay.setDate(startDate.getDate() + dayIndex);
 
-      // Calculate the week number and day of the week for the current day
-      const { weekNumber, dayOfWeek } = calculateWeekAndDay(currentDay);
+      // Calculate the year, week number, and day of the week for the current day
+      const { year, weekNumber, dayOfWeek } = calculateYearWeekAndDay(currentDay);
 
       // Get the dish information for the current day
       const dish = dishes[dayIndex];
 
+      // Check for conflicts before inserting the menu item
+      const existingDishes = await fetchDishByYearWeekAndDay(sql, year, weekNumber, dayOfWeek);
+      if (existingDishes.length > 0) {
+        return res.status(ResponseStatus.CONFLICT).json({ message: ResponseMessages.CONFLICT_MENU_ITEM });
+      }
+
       // Insert the menu item into the database using utility function
-      await insertMenuItem(weekNumber, dayOfWeek, dish, sql);
+      await insertMenuItem(year, weekNumber, dayOfWeek, dish, sql);
     }
 
     // Return a 201 Created response indicating success

@@ -17,11 +17,10 @@ router.post('/register', registerController.registerUser);
 // Route for user authentication
 router.post('/auth', loginUser.loginUser);
 
-// Route for creating menu items
-router.post('/create-menu', createMenuItem);
-
-// Route for getting menu items based on start date
-router.get('/get-menu', getDishesFromStartDate);
+// Route for creating and getting menu items based on start date
+router.route('/menu')
+  .post(createMenuItem) // Handle POST request to create menu items
+  .get(getDishesFromStartDate); // Handle GET request to retrieve menu items
 
 // Route for handling menu item operations (get and update)
 router.route('/menu-item')
