@@ -16,8 +16,8 @@
 
 ## API Endpoints Development
 
-- [ ] Design API endpoints based on project requirements.
-- [ ] Implement user authentication routes (register, login).
+- [x] Design API endpoints based on project requirements.
+- [x] Implement user authentication routes (register, login).
 - [x] Develop routes for menu retrieval and dish details.
 - [ ] Create routes for user favorites and cart management.
 - [ ] Implement order placement and order history routes.
