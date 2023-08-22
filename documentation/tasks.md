@@ -1,16 +1,16 @@
 # Food Ordering Application - Task Tracker
 ## Overall Project
 
-- [ ] Define project requirements and features.
+- [x] Define project requirements and features.
 - [ ] Create wireframes and UI/UX design for the mobile app.
-- [ ] Plan database schema and relationships.
-- [ ] Set up version control repository (e.g., Git).
+- [x] Plan database schema and relationships.
+- [x] Set up a version control repository (e.g., Git).
 
 ## Database Development
 
-- [ ] Design and create the PostgreSQL database schema.
-- [ ] Write SQL scripts to create database tables.
-- [ ] Implement relationships and foreign keys.
+- [x] Design and create the PostgreSQL database schema.
+- [x] Write SQL scripts to create database tables.
+- [x] Implement relationships and foreign keys.
 - [ ] Populate sample data for testing purposes.
 - [ ] Test database queries and data integrity.
 
@@ -18,14 +18,14 @@
 
 - [ ] Design API endpoints based on project requirements.
 - [ ] Implement user authentication routes (register, login).
-- [ ] Develop routes for menu retrieval and dish details.
+- [x] Develop routes for menu retrieval and dish details.
 - [ ] Create routes for user favorites and cart management.
 - [ ] Implement order placement and order history routes.
 - [ ] Develop routes for reviews and contact requests.
 
 ## Server Development
 
-- [ ] Set up Node.js server environment.
+- [x] Set up Node.js server environment.
 - [ ] Implement authentication middleware for protected routes.
 - [ ] Develop route handlers for API endpoints.
 - [ ] Implement error handling and validation for routes.
@@ -34,7 +34,7 @@
 
 ## Mobile App Development
 
-- [ ] Set up Flutter development environment.
+- [x] Set up Flutter development environment.
 - [ ] Create user authentication screens (registration, login).
 - [ ] Develop UI components for browsing menus and viewing dishes.
 - [ ] Implement cart functionality and order placement.
