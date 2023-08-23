@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:happi_oven/functions/api/login.dart';
+import 'package:happi_oven/models/user.dart';
 import 'package:happi_oven/pages/login_page/widgets/text_form_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,6 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool isLogin = true;
   bool passwordLoginObscure = true;
+  bool rememberLogin = false;
   TextEditingController usernameLoginField = TextEditingController();
   TextEditingController passwordLoginField = TextEditingController();
   TextEditingController usernameRegisterField = TextEditingController();
@@ -33,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40.0),
+            padding: const EdgeInsets.only(top: 60.0, bottom: 20),
             child: Image.asset(
               'assets/images/transparent.png',
               width: MediaQuery.of(context).size.width * 0.60,
@@ -62,8 +65,30 @@ class _LoginPageState extends State<LoginPage> {
               });
             },
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Checkbox(
+                  value: rememberLogin,
+                  onChanged: (newRememberLogin) {
+                    setState(() {
+                      rememberLogin = newRememberLogin ?? false;
+                    });
+                  }),
+              const Text('Rember me'),
+            ],
+          ),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () async {
+              ApiResponse login = await loginUser(
+                  usernameLoginField.text, passwordLoginField.text);
+
+              if (login.userData == null) {
+                print('unsuccessful');
+              } else {
+                print('success');
+              }
+            },
             child: const Text('Login'),
           ),
           const Divider(
@@ -91,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40.0),
+            padding: const EdgeInsets.only(top: 60.0, bottom: 20),
             child: Image.asset(
               'assets/images/transparent.png',
               width: MediaQuery.of(context).size.width * 0.60,
@@ -142,6 +167,9 @@ class _LoginPageState extends State<LoginPage> {
             Icons.lock,
             KeyboardType.text,
           ),
+          const SizedBox(
+            height: 10,
+          ),
           OutlinedButton(
             onPressed: () {},
             child: const Text('Register'),
@@ -149,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
           const Divider(
             indent: 30,
             endIndent: 30,
-            height: 40,
+            height: 20,
           ),
           ElevatedButton(
               onPressed: () {

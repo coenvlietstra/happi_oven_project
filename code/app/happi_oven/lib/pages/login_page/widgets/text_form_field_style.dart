@@ -5,6 +5,7 @@ InputDecoration loginPageInputDecoration(
   Widget icon,
 ) {
   return InputDecoration(
+    contentPadding: EdgeInsets.zero,
     isDense: true,
     hintText: hint,
     prefixIcon: icon,
