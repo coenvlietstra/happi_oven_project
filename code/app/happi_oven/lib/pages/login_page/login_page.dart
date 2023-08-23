@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:happi_oven/functions/api/login.dart';
 import 'package:happi_oven/models/user.dart';
@@ -84,9 +85,13 @@ class _LoginPageState extends State<LoginPage> {
                   usernameLoginField.text, passwordLoginField.text);
 
               if (login.userData == null) {
-                print('unsuccessful');
+                if (kDebugMode) {
+                  print('unsuccessful');
+                }
               } else {
-                print('success');
+                if (kDebugMode) {
+                  print('success');
+                }
               }
             },
             child: const Text('Login'),
